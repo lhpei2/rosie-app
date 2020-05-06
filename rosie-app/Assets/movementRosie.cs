@@ -9,10 +9,13 @@ public class movementRosie : MonoBehaviour
     float moveSpd=0.02f;
     float ang_y=0f;
     float temp_ang=0f;
+    Vector3 initial_pos;
     // Start is called before the first frame update
     void Start()
     {
+        initial_pos=transform.localPosition;
         targetPosition=transform.localPosition;
+        targetPosition.x+=0.1f;
         start_y=transform.localPosition.y;
     }
 
@@ -30,18 +33,25 @@ public class movementRosie : MonoBehaviour
         float a=0.005f;
         pos.y = start_y+a*Mathf.Abs(Mathf.Sin(Time.time*3f));
         
-        float spd=Time.deltaTime*moveSpd;
-
-        if (Vector2.Distance(new Vector2(pos.x,pos.z),new Vector2(targetPosition.x,targetPosition.z))<spd)
+        if (Input.touchCount==2)
         {
-            pos.x=targetPosition.x;
-            pos.z=targetPosition.z;
+            pos=initial_pos;
         }
-        else
+        else if (Input.touchCount==1)
         {
-            float ang=Mathf.Atan2(targetPosition.z-pos.z,targetPosition.x-pos.x);
-            pos.x+=spd*Mathf.Cos(ang);
-            pos.z+=spd*Mathf.Sin(ang);
+            float spd=Time.deltaTime*moveSpd;
+
+            if (Vector2.Distance(new Vector2(pos.x,pos.z),new Vector2(targetPosition.x,targetPosition.z))<spd)
+            {
+                pos.x=targetPosition.x;
+                pos.z=targetPosition.z;
+            }
+            else
+            {
+                float ang=Mathf.Atan2(targetPosition.z-pos.z,targetPosition.x-pos.x);
+                pos.x+=spd*Mathf.Cos(ang);
+                pos.z+=spd*Mathf.Sin(ang);
+            }
         }
 
         transform.localPosition=pos;

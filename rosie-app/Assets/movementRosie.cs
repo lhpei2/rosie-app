@@ -11,6 +11,7 @@ public class movementRosie : MonoBehaviour
     float dist=0f;
     float ang_y=0f;
     float temp_ang=0f;
+    public bool allowed_to_move=false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +29,18 @@ public class movementRosie : MonoBehaviour
         float a=0.005f;
         pos.y = start_y+a*Mathf.Abs(Mathf.Sin(Time.time*3f));
         
-        if (Input.touchCount==2)
+        //Debug.Log();
+        if (allowed_to_move)
         {
-            dist=0;      
-        }
-        else if (Input.touchCount==1)
-        {
-            float spd=Time.deltaTime*moveSpd;
-            dist+=spd;
+            if (Input.touchCount==2)
+            {
+                dist=0;      
+            }
+            else if (Input.touchCount==1)
+            {
+                float spd=Time.deltaTime*moveSpd;
+                dist+=spd;
+            }
         }
 
         Vector3 path_pos=path.path.GetPointAtDistance(dist, EndOfPathInstruction.Stop);

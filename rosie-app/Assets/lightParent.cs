@@ -131,8 +131,8 @@ public class lightParent : MonoBehaviour
 
     protected virtual void OnTrackingFound()
     {
-        var light=GameObject.Find("lightSource");
-        light.transform.SetParent(transform,false);
+        GameObject.Find("lightSource").transform.SetParent(transform,false);
+        transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=true;
 
         if (mTrackableBehaviour)
         {
@@ -159,6 +159,8 @@ public class lightParent : MonoBehaviour
 
     protected virtual void OnTrackingLost()
     {
+        transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=false;
+
         if (mTrackableBehaviour)
         {
             var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);

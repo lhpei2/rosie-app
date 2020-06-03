@@ -79,6 +79,8 @@ Material:
     m_Floats:
     - Boolean_137144CF: 1
     - Boolean_E51AF184: 0
+    - _useColour: 0
+    - _useNormals: 0
     m_Colors:
     - Color_4140241: {r: 0.7978096, g: 0.988935, b: 1.375086, a: 0}
     - Color_469810E4: {r: 0.07898717, g: 0.4980845, b: 0.6698113, a: 0}

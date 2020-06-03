@@ -9,20 +9,20 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Road
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
+  m_CustomRenderQueue: 2500
   stringTagMap:
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: eef7def8a6d89134284369bbe0145515, type: 3}
-        m_Scale: {x: 1, y: 8}
+        m_Texture: {fileID: 2800000, guid: 7b4d8ef3d2c6db4459c001f245ccf4b1, type: 3}
+        m_Scale: {x: 1, y: 24}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
@@ -45,8 +45,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eef7def8a6d89134284369bbe0145515, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 7b4d8ef3d2c6db4459c001f245ccf4b1, type: 3}
+        m_Scale: {x: 1, y: 20}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2

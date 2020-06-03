@@ -12,6 +12,7 @@ public class switchMaterial : MonoBehaviour
     void Start() 
     {
         rend = GetComponent<Renderer>();
+        rend.receiveShadows=false;
         rend.material.SetInt("_useColour",0);
         rend.material.SetInt("_useNormals",0);
     }

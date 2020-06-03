@@ -43,7 +43,8 @@ public class movementRosie : MonoBehaviour
             }
         }
 
-        Vector3 path_pos=path.path.GetPointAtDistance(dist, EndOfPathInstruction.Stop);
+        Vector3 path_pos=path.path.GetPointAtDistance(dist/path.transform.localScale.x, EndOfPathInstruction.Stop);
+        Debug.Log(dist);
         path_pos=transform.parent.transform.InverseTransformPoint(path_pos);
         pos.x=path_pos.x;
         pos.z=path_pos.z;

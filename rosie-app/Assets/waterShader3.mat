@@ -10,7 +10,7 @@ Material:
   m_Name: waterShader3
   m_Shader: {fileID: -6465566751694194690, guid: e912b8f247371064a96c747884a3c117,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

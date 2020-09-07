@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="rosie5" size="0.180000 0.161241" />
+    <ImageTarget name="rosie6" size="0.180000 0.162548" />
+    <ImageTarget name="rosie4" size="0.180000 0.160578" />
     <ImageTarget name="rosie3" size="0.185000 0.155728" />
     <ImageTarget name="rosie2" size="0.185000 0.162981" />
     <ImageTarget name="rosie1" size="0.185000 0.163879" />

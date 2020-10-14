@@ -180,6 +180,11 @@ namespace PathCreation {
             return GetPointAtTime (t, endOfPathInstruction);
         }
 
+        public float GetTimeAtDistance (float dst, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop) {
+            float t = dst / length;
+            return t;
+        }
+
         /// Gets forward direction on path based on distance travelled.
         public Vector3 GetDirectionAtDistance (float dst, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop) {
             float t = dst / length;

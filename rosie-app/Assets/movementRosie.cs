@@ -125,7 +125,7 @@ public class movementRosie : MonoBehaviour
         
 
 
-        if (allowed_to_move && time_since_footstep>0.5f && Mathf.Abs(Mathf.Sin(Time.time*3f))<0.1)
+        if (allowed_to_move && !paused && !path_ended && time_since_footstep>0.5f && Mathf.Abs(Mathf.Sin(Time.time*3f))<0.1)
         {
             time_since_footstep=0f;
             if (terrain_type>-1)

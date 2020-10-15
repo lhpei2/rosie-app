@@ -19,7 +19,7 @@ public class popupElastic : MonoBehaviour
 
         if (transform.parent.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move)
         {
-            ease_val+=Time.deltaTime;
+            ease_val+=Time.deltaTime/2f;
             Vector3 scl=transform.localScale;
             scl.y=EaseOutElastic(0f,1f,ease_val);
             transform.localScale=scl;

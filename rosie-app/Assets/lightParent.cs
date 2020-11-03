@@ -133,7 +133,7 @@ public class lightParent : MonoBehaviour
     {
         GameObject.Find("lightSource").transform.SetParent(transform,false);
         
-        mainController controller_script = GameObject.Find("ARCamera").GetComponent<mainController>();
+        mainController controller_script = GameObject.Find("Controller").GetComponent<mainController>();
         movementRosie rosie = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>();
         
         int track_num;
@@ -196,7 +196,7 @@ public class lightParent : MonoBehaviour
 
     protected virtual void OnTrackingLost()
     {
-        GameObject.Find("ARCamera").GetComponent<mainController>().page_active = false;
+        GameObject.Find("Controller").GetComponent<mainController>().page_active = false;
         transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=false;
         GameObject ambience = GameObject.Find("Ambience");
         ambience.GetComponent<AudioSource>().Stop();

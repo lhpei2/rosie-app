@@ -85,7 +85,7 @@ public class movementRosie : MonoBehaviour
         time_since_footstep+=Time.deltaTime;
 
         float dist_travelled=path.path.GetTimeAtDistance(dist/path.transform.localScale.x, EndOfPathInstruction.Stop);
-        string scene=GameObject.Find("ARCamera").GetComponent<mainController>().current_page;
+        string scene=GameObject.Find("Controller").GetComponent<mainController>().current_page;
         switch(scene) 
         {
             case "scene0":

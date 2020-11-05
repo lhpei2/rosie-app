@@ -11,6 +11,8 @@ public class AmbientSounds : MonoBehaviour
     {
         ambience_list.Add((AudioClip)Resources.Load("Sounds/bees_buzzing"));
         ambience_list.Add((AudioClip)Resources.Load("Sounds/windy_creak"));
+        ambience_list.Add((AudioClip)Resources.Load("Sounds/goat_mouse"));
+        ambience_list.Add((AudioClip)Resources.Load("Sounds/pond_sounds"));
     }
 
     // Update is called once per frame

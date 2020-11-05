@@ -133,43 +133,54 @@ public class lightParent : MonoBehaviour
     {
         GameObject.Find("lightSource").transform.SetParent(transform,false);
         
-        mainController controller_script = GameObject.Find("Controller").GetComponent<mainController>();
-        movementRosie rosie = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>();
-        
-        int track_num;
-
-        switch(gameObject.name)
+        if (!transform.name.Contains("alt"))
         {
-            case "scene4":
-                track_num=1;
-                break;
+            mainController controller_script = GameObject.Find("Controller").GetComponent<mainController>();
+            movementRosie rosie = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>();
+            
+            int track_num;
 
-            case "scene6":
-                track_num=0;
-                break;
+            switch(gameObject.name)
+            {
+                case "scene2":
+                    track_num=3;
+                    break;
 
-            default:
-                track_num=-1;
-                break;
-        }
-        
-        if (track_num>-1)
-        {
-            GameObject ambience = GameObject.Find("Ambience");
-            ambience.GetComponent<AudioSource>().clip=ambience.GetComponent<AmbientSounds>().ambience_list[track_num];
-            ambience.GetComponent<AudioSource>().loop=true;
-            ambience.GetComponent<AudioSource>().Play();
-        }
+                case "scene3":
+                    track_num=2;
+                    break;
 
-        rosie.allowed_to_move=true;
-        if (controller_script.current_page!=gameObject.name)
-        {
-            rosie.dist = 0;
-            rosie.path_ended = false;
-            rosie.paused = true;
+                case "scene4":
+                    track_num=1;
+                    break;
+
+                case "scene6":
+                    track_num=0;
+                    break;
+
+                default:
+                    track_num=-1;
+                    break;
+            }
+            
+            if (track_num>-1)
+            {
+                GameObject ambience = GameObject.Find("Ambience");
+                ambience.GetComponent<AudioSource>().clip=ambience.GetComponent<AmbientSounds>().ambience_list[track_num];
+                ambience.GetComponent<AudioSource>().loop=true;
+                ambience.GetComponent<AudioSource>().Play();
+            }
+
+            rosie.allowed_to_move=true;
+            if (controller_script.current_page!=gameObject.name)
+            {
+                rosie.dist = 0;
+                rosie.path_ended = false;
+                rosie.paused = true;
+            }
+            controller_script.page_active = true;
+            controller_script.current_page=gameObject.name;
         }
-        controller_script.page_active = true;
-        controller_script.current_page=gameObject.name;
 
         if (mTrackableBehaviour)
         {
@@ -196,10 +207,13 @@ public class lightParent : MonoBehaviour
 
     protected virtual void OnTrackingLost()
     {
-        GameObject.Find("Controller").GetComponent<mainController>().page_active = false;
-        transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=false;
-        GameObject ambience = GameObject.Find("Ambience");
-        ambience.GetComponent<AudioSource>().Stop();
+        if (!transform.name.Contains("alt"))
+        {
+            GameObject.Find("Controller").GetComponent<mainController>().page_active = false;
+            transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=false;
+            GameObject ambience = GameObject.Find("Ambience");
+            ambience.GetComponent<AudioSource>().Stop();
+        }
 
         if (mTrackableBehaviour)
         {

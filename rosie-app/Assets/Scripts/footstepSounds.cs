@@ -9,8 +9,8 @@ public class footstepSounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        footstep_list.Add((AudioClip)Resources.Load("Sounds/leaves02"));
-        footstep_list.Add((AudioClip)Resources.Load("Sounds/wood03"));
+        footstep_list.Add((AudioClip)Resources.Load("Sounds/Footsteps/leaves02"));
+        footstep_list.Add((AudioClip)Resources.Load("Sounds/Footsteps/wood03"));
     }
 
     // Update is called once per frame

@@ -9,10 +9,10 @@ public class AmbientSounds : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ambience_list.Add((AudioClip)Resources.Load("Sounds/bees_buzzing"));
-        ambience_list.Add((AudioClip)Resources.Load("Sounds/windy_creak"));
-        ambience_list.Add((AudioClip)Resources.Load("Sounds/goat_mouse"));
-        ambience_list.Add((AudioClip)Resources.Load("Sounds/pond_sounds"));
+        ambience_list.Add((AudioClip)Resources.Load("Sounds/Ambient/bees_buzzing"));
+        ambience_list.Add((AudioClip)Resources.Load("Sounds/Ambient/windy_creak"));
+        ambience_list.Add((AudioClip)Resources.Load("Sounds/Ambient/goat_mouse"));
+        ambience_list.Add((AudioClip)Resources.Load("Sounds/Ambient/pond_sounds"));
     }
 
     // Update is called once per frame

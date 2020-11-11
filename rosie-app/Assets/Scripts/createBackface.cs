@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class createBackface : MonoBehaviour
 {
+    //Creates artificial backface
+
     GameObject backface;
-    // Start is called before the first frame update
+
     void Start()
     {
+        //Creates backface object and sets it material and parent to current object's material and parent
         backface=Instantiate(Resources.Load("Backface", typeof(GameObject))) as GameObject;
         backface.GetComponent<Renderer>().material=GetComponent<Renderer>().material;
         backface.transform.parent=transform.parent;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Update backface scale/rotation/position properties to match current object's properties
         backface.transform.localPosition=transform.localPosition;
         backface.transform.localRotation=transform.localRotation;
         Vector3 scl=transform.localScale;

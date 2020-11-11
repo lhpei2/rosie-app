@@ -5,16 +5,11 @@ using UnityEngine.UI;
 
 public class setButtonVal : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Sets the value of the button position setting to the value in settings upon initialization
+
     void Start()
     {
         mainController mc = GameObject.Find("Controller").GetComponent<mainController>();
         transform.GetComponent<Dropdown>().value = mc.settingsData.buttonPosition;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

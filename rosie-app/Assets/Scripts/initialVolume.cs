@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class initialVolume : MonoBehaviour
 {
+    //Records initial volume for audio sources
+
     public float init_volume;
-    // Start is called before the first frame update
+
     void Awake()
     {
         init_volume = transform.GetComponent<AudioSource>().volume;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

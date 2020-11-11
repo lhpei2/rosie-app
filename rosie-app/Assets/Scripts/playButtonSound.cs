@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class playButtonSound : MonoBehaviour
 {
+    //Handles playing a sound when a button is pressed
+
     public AudioClip audioClip;
     float init_vol = 1f;
     AudioSource audioSource;
     mainController mc;
-    // Start is called before the first frame update
+
     void Start()
     {
         mc = GameObject.Find("Controller").GetComponent<mainController>();
@@ -17,7 +19,6 @@ public class playButtonSound : MonoBehaviour
 
     public void playSound()
     {
-        Debug.Log("QWEG");
         audioSource.PlayOneShot(audioClip, 1f);
     }
 }

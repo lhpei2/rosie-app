@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class switchMaterial : MonoBehaviour
 {
+    //Switches between different materials for the pond in the "around the pond" scene, used during development for testing
+
     int material=0;
     Renderer rend;
-
-    // Update is called once per frame
 
     void Start() 
     {
@@ -15,10 +15,5 @@ public class switchMaterial : MonoBehaviour
         rend.receiveShadows=false;
         rend.material.SetInt("_useColour",0);
         rend.material.SetInt("_useNormals",0);
-    }
-
-    void Update()
-    {
-
     }
 }

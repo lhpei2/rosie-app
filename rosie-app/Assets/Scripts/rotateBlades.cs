@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class rotateBlades : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Animation for windmill blades in "past the mill" scene
 
-    // Update is called once per frame
     void Update()
     {
+        //Rotate blades indefinitely
         transform.localRotation=Quaternion.Euler(Time.time*10f, 90f, 90f);
     }
 }

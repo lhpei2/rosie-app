@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class setButtonPosition : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Sets the position of the menu and scene action buttons in-game according to the value in settings
+
     void OnEnable()
     {
         mainController mc = GameObject.Find("Controller").GetComponent<mainController>();
         Vector2 vec = new Vector2(0f, 1f-0.5f*mc.settingsData.buttonPosition);
         Debug.Log(mc.settingsData.buttonPosition);
-        vec.x = transform.name == "scenePlayButton" ? 1f : 0f;
+        vec.x = transform.name == "scenePlayButton" ? 1f : 0f; //Differentiate between x-alignment for play button and menu button
 
         RectTransform rt = transform.GetComponent<RectTransform>();
         rt.anchorMin = vec;
@@ -20,11 +21,5 @@ public class setButtonPosition : MonoBehaviour
         Vector2 pos = rt.anchoredPosition;
         pos.y = (mc.settingsData.buttonPosition-1f)*200f;
         rt.anchoredPosition = pos;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

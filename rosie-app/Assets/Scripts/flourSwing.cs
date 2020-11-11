@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class flourSwing : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Animation for flour bag in "past the mill" scene
 
-    // Update is called once per frame
     void Update()
     {
+        //Swing side to side using sine wave
         Quaternion rot = transform.localRotation;
         rot.z = 0.04f*Mathf.Sin(Time.time);
         transform.localRotation = rot;

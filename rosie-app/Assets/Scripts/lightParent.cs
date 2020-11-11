@@ -131,14 +131,18 @@ public class lightParent : MonoBehaviour
 
     protected virtual void OnTrackingFound()
     {
+        //Setting the light source to be a child of the image target that was found
+
         GameObject.Find("lightSource").transform.SetParent(transform,false);
-        
+
         if (!transform.name.Contains("alt"))
         {
             mainController controller_script = GameObject.Find("Controller").GetComponent<mainController>();
             movementRosie rosie = transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>();
             
             int track_num;
+
+            //Pick correct ambient track for scene
 
             switch(gameObject.name)
             {
@@ -162,6 +166,8 @@ public class lightParent : MonoBehaviour
                     track_num=-1;
                     break;
             }
+
+            //Play ambient track for scene
             
             if (track_num>-1)
             {
@@ -170,6 +176,8 @@ public class lightParent : MonoBehaviour
                 ambience.GetComponent<AudioSource>().loop=true;
                 ambience.GetComponent<AudioSource>().Play();
             }
+
+            //Reset Rosie's position if new page
 
             rosie.allowed_to_move=true;
             if (controller_script.current_page!=gameObject.name)
@@ -210,9 +218,9 @@ public class lightParent : MonoBehaviour
         if (!transform.name.Contains("alt"))
         {
             GameObject.Find("Controller").GetComponent<mainController>().page_active = false;
-            transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=false;
-            GameObject ambience = GameObject.Find("Ambience");
-            ambience.GetComponent<AudioSource>().Stop();
+            transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move=false; //Disable Rosie movement
+            GameObject ambience = GameObject.Find("Ambience"); 
+            ambience.GetComponent<AudioSource>().Stop(); //Stop playing ambient track
         }
 
         if (mTrackableBehaviour)

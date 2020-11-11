@@ -17,7 +17,7 @@ public class mainController : MonoBehaviour
     bool popup_open=false;
     public SettingsData settingsData;
 
-    // Start is called before the first frame update
+    //Read existing settings file if one exists, else use default settings
 
     private void Awake() {
        if (File.Exists(Application.persistentDataPath+"/saveData.json"))
@@ -39,6 +39,8 @@ public class mainController : MonoBehaviour
 
     void Start()
     {
+        //Getting references to all necessary objects as they will be enabled/disabled dynamically
+
         play_button = Resources.Load<Sprite>("UI/button_play");
         play_button_grey = Resources.Load<Sprite>("UI/button_play_grey");
         pause_button = Resources.Load<Sprite>("UI/button_pause");
@@ -66,21 +68,26 @@ public class mainController : MonoBehaviour
         current_page = "";
         narration_bank=GameObject.Find("Narration");
 
+        //Setting audio volume values according to settings
+
         _setMusicVolume(settingsData.musicSliderVal);
         _setSFXVolume(settingsData.SFXSliderVal);
         _setNarrationVolume(settingsData.narrationSliderVal);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!in_main_menu)
         {   
+            //Display flickering page icon if not in the menu and a page is not found
+
             flicker_time=page_active? 0f : flicker_time+Time.deltaTime;
             GameObject.Find("focusOnPage").GetComponent<Image>().enabled=Mathf.Sin(flicker_time*5f)<0f;
 
             if (current_page!="")
             {
+                //If on a page, set the scene action button icon depending on where Rosie is along the path, and grey out the icon if the page is not in view
+
                 movementRosie rosie = GameObject.Find(current_page).transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>();
                 if (rosie.paused)
                 {
@@ -103,7 +110,8 @@ public class mainController : MonoBehaviour
 
     public void ButtonPressed() 
     {
-        Debug.Log("QWF");
+        //When the action button scene is pressed, pause, play or reset Rosie according to where she is along the path        
+
         movementRosie rosie = GameObject.Find(current_page).transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>();
         if (page_active) 
         {
@@ -133,6 +141,8 @@ public class mainController : MonoBehaviour
 
     public void openMainMenu()
     {
+        //Turns off AR camera and turns on main camera in preparation to display main menu elements when menu button is pressed
+
         in_main_menu=true;
         main_menu_parent.SetActive(true);
         scene_parent.SetActive(false);
@@ -143,6 +153,8 @@ public class mainController : MonoBehaviour
 
     public void closeMainMenu()
     {   
+        //If play pressed, turn off main camera and turn on AR camera and hide main menu elements
+
         if (!popup_open)
         {
             in_main_menu=false;
@@ -245,6 +257,8 @@ public class mainController : MonoBehaviour
     {
         int narration_num=-1;
 
+        //Pick correct narration track for scene
+
         switch(current_page) 
         {
             case "scene0":
@@ -279,6 +293,8 @@ public class mainController : MonoBehaviour
                 narration_num=7;
                 break;
         }
+
+        //Play narration for scene
 
         if (narration_num>-1)
         {

@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class popupElastic : MonoBehaviour
 {
+    //Handles pop up picture book effect
+
     bool popped=false;
     float ease_val=0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
+        //If Rosie is on screen, play pop up animation, otherwise reset it
         if (transform.parent.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<movementRosie>().allowed_to_move)
         {
             ease_val+=Time.deltaTime/2f;
@@ -30,6 +25,7 @@ public class popupElastic : MonoBehaviour
         }
     }
 
+    //Easing function used
     float EaseOutElastic(float start, float end, float value)
     {
         end -= start;

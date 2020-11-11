@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class mouseWiggle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Animation for the mice in the "over the haystack" scene
 
-    // Update is called once per frame
     void Update()
     {
+        //Rotate side to side using sine wave
+
         Quaternion rot = transform.localRotation;
         rot.z = 0.05f*Mathf.Sin(Time.time*2f);
         transform.localRotation = rot;

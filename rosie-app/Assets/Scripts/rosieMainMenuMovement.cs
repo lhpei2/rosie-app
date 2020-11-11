@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class rosieMainMenuMovement : MonoBehaviour
 {
+    //Handles animation of Rosie sprite on main menu
+
     float start_y;
     RectTransform rt;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //Get initial position as reference
         rt = transform.GetComponent<RectTransform>();
         start_y = rt.anchoredPosition.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Use sine waves to create hopping motion as well as bobbing back and forth
         Vector2 pos=rt.anchoredPosition;
         float a = 2f;
         pos.y = start_y+a*Mathf.Abs(Mathf.Sin(Time.time*3f));

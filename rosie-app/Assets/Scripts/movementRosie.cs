@@ -5,6 +5,8 @@ using PathCreation;
 
 public class movementRosie : MonoBehaviour
 {
+    //Handles Rosie movement and animation across all scenes
+
     public PathCreator path;
     float start_y;
     float moveSpd=0.02f;
@@ -19,10 +21,9 @@ public class movementRosie : MonoBehaviour
     GameObject sound_bank;
     int terrain_type;
 
-
-    // Start is called before the first frame update
     void Start()
     {
+        //Setting initial position to correct spot and save reference position for use in animation
         Vector3 path_pos=path.path.GetPointAtDistance(0f, EndOfPathInstruction.Loop);
         path_pos=transform.parent.transform.InverseTransformPoint(path_pos);
         path_pos.y+=0.015f;
@@ -31,34 +32,25 @@ public class movementRosie : MonoBehaviour
         sound_bank=GameObject.Find("SoundBank");
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Use delta time to scale movement such that it is independent of frame rate
         
         float spd=Time.deltaTime*moveSpd;
-        /*if (allowed_to_move)
-        {
-            if (Input.touchCount==2)
-            {
-                dist=0;      
-            }
-            else if (Input.touchCount==1)
-            {
-                dist+=spd;
-            }
-        }*/
+
         if (allowed_to_move && !paused)
         {
             dist += spd;
         }
 
-        //Vector3 path_pos=path.path.GetPointAtDistance(dist, EndOfPathInstruction.Stop);
-        //Vector3 path_pos2=path.path.GetPointAtDistance((dist+0.01f), EndOfPathInstruction.Stop);
+        //Get path position on two positions along path which will be used to calculate Rosie's direction
+
         Vector3 path_pos=path.path.GetPointAtDistance(dist/path.transform.localScale.x, EndOfPathInstruction.Stop);
         Vector3 path_pos2=path.path.GetPointAtDistance((dist+0.01f)/path.transform.localScale.x, EndOfPathInstruction.Stop);
         path_pos=transform.parent.transform.InverseTransformPoint(path_pos);
         path_pos2=transform.parent.transform.InverseTransformPoint(path_pos2);
 
+        //Calculating vertical angle for Rosie based on path
         Vector3 temp_pos=path_pos2-path_pos;
         float temp_y=temp_pos.y;
         temp_pos.y=0f;
@@ -73,19 +65,19 @@ public class movementRosie : MonoBehaviour
             path_ended=true;
         }
       
+        //Rotate Rosie taking into account both pitch and yaw
         transform.localRotation=Quaternion.Euler(0f,horz_ang, vert_ang+10f/2*Mathf.Sin(Time.time*3f));
-        
-        if (allowed_to_move && Input.touchCount==1)
-        {
-            //Debug.Log(dist+" "+path_pos*1000);
-        }
 
+        //Add hopping animation on top of world position
         float a=0.005f;
         path_pos.y+=start_y+a*Mathf.Abs(Mathf.Sin(Time.time*3f));
         time_since_footstep+=Time.deltaTime;
 
         float dist_travelled=path.path.GetTimeAtDistance(dist/path.transform.localScale.x, EndOfPathInstruction.Stop);
         string scene=GameObject.Find("Controller").GetComponent<mainController>().current_page;
+
+        //Getting correct footstep sound for each scene depending on distance along path
+
         switch(scene) 
         {
             case "scene0":
@@ -122,9 +114,8 @@ public class movementRosie : MonoBehaviour
                 else {terrain_type=1;}
                 break;
         }
-        
 
-
+        //Play footstep sounds when landing on ground each hop while walking (but not while stationary)
         if (allowed_to_move && !paused && !path_ended && time_since_footstep>0.5f && Mathf.Abs(Mathf.Sin(Time.time*3f))<0.1)
         {
             time_since_footstep=0f;
@@ -135,6 +126,8 @@ public class movementRosie : MonoBehaviour
                 sound_bank.GetComponent<AudioSource>().Play();
             }
         }
+
+        //Update final Rosie position
         transform.localPosition=path_pos;
     }
 }

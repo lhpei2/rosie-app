@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class setSliderVal : MonoBehaviour
 {
+    //Sets the slider values in settings menu according to the values saved
 
-    // Start is called before the first frame update
     void Start()
     {
         mainController mc = GameObject.Find("Controller").GetComponent<mainController>();
@@ -28,11 +28,5 @@ public class setSliderVal : MonoBehaviour
         }
         
         transform.GetComponent<Slider>().value = val;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class infoController : MonoBehaviour
 {
+    //Controls content in information popup
+
     GameObject text1, text2, text3, text4;
     Text button1, button2, button3;
     string[] button_text_list = {"About","How to Play","Parental Info","Spatial Skills"};
@@ -14,9 +16,11 @@ public class infoController : MonoBehaviour
     List<Text> button_list = new List<Text>();
     int[] button_order = {1, 2 ,3};
     int current_text = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
+        //Set up data structures with elements inside info popup
+        
         button1 = GameObject.Find("infoButtonText1").GetComponent<Text>();
         button2 = GameObject.Find("infoButtonText2").GetComponent<Text>();
         button3 = GameObject.Find("infoButtonText3").GetComponent<Text>();
@@ -45,12 +49,6 @@ public class infoController : MonoBehaviour
         button3.text = button_text_list[button_order[2]];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void buttonPressed1()
     {
         switchText(0);
@@ -68,12 +66,18 @@ public class infoController : MonoBehaviour
 
     void switchText(int num)
     {
-        int button_num = button_order[num];
-        button_order[num] = current_text;
-        GameObject current_obj = body_text_list[current_text];
+        
+
+        int button_num = button_order[num]; //Get the info tab
+        button_order[num] = current_text; //Swap the button text
+
+        //Hiding and revealing the corresponding body text objects
+        GameObject current_obj = body_text_list[current_text]; 
         GameObject  next_obj = body_text_list[button_num];
         current_obj.SetActive(false);
         next_obj.SetActive(true);
+
+        //Sets header text according to given button index
         Text temp = button_list[num];
         temp.text = button_text_list[current_text];
         button_list[num] = temp;
@@ -83,6 +87,8 @@ public class infoController : MonoBehaviour
 
     public void resetInfo()
     {
+        //Reset button order and default body text/header
+
         GameObject current_obj = body_text_list[current_text];
         GameObject  next_obj = body_text_list[0];
         header_text.text = header_text_list[0];

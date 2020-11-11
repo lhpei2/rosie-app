@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class wobbleCutout : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Handles the ebbing and flowing animation for the ground plane in each scene by varying the alpha cutoff
+
     Renderer rend;
 
     void Start()
@@ -12,7 +13,6 @@ public class wobbleCutout : MonoBehaviour
         rend = GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         rend.material.SetFloat("_Cutoff", 0.5f+0.1f*Mathf.Sin(Time.time*2f));

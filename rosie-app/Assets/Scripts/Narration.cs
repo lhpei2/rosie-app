@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Narration : MonoBehaviour
 {
+    //Stores list of narration tracks
 
      public List<AudioClip> narration_list = new List<AudioClip>();
 
-    // Start is called before the first frame update
     void Start()
     {
         narration_list.Add((AudioClip)Resources.Load("Sounds/Narration/walk"));
@@ -18,11 +18,5 @@ public class Narration : MonoBehaviour
         narration_list.Add((AudioClip)Resources.Load("Sounds/Narration/through"));
         narration_list.Add((AudioClip)Resources.Load("Sounds/Narration/under"));
         narration_list.Add((AudioClip)Resources.Load("Sounds/Narration/dinner"));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
